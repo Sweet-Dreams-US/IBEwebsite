@@ -44,7 +44,7 @@ export default function BlogPostHeader({ meta }: BlogPostHeaderProps) {
             href="/blog"
             style={{ color: "#C05621", textDecoration: "none" }}
           >
-            Knowledge Center
+            Blog
           </a>
           <span style={{ color: "rgba(255,255,255,0.3)" }}>/</span>
           <span>Class {meta.classNumber}</span>

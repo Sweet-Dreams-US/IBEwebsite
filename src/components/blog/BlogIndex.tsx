@@ -72,7 +72,7 @@ export default function BlogIndex({ posts, classes }: BlogIndexProps) {
               marginBottom: "16px",
             }}
           >
-            IBE Knowledge Center
+            IBE Blog
           </div>
           <h1
             style={{

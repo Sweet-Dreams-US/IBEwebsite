@@ -20,7 +20,7 @@ export async function generateMetadata(
   if (!meta) return {};
 
   return {
-    title: `${meta.title} | IBE Knowledge Center`,
+    title: `${meta.title} | IBE Blog`,
     description: meta.excerpt,
     alternates: {
       canonical: `/blog/${meta.slug}`,

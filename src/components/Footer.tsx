@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer style={{ background: "linear-gradient(180deg, #1C2B36, #162129)", borderTop: "3px solid #C05621" }}>
-      {/* Knowledge Center promo strip */}
+      {/* Blog promo strip */}
       <div
         style={{
           borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
@@ -35,7 +35,7 @@ export default function Footer() {
                 marginBottom: "8px",
               }}
             >
-              IBE Knowledge Center
+              IBE Blog
             </div>
             <p
               style={{
@@ -109,7 +109,7 @@ export default function Footer() {
                 { name: "About", href: "/#about" },
                 { name: "Products", href: "/#products" },
                 { name: "Events", href: "/#events" },
-                { name: "Knowledge Center", href: "/blog" },
+                { name: "Blog", href: "/blog" },
                 { name: "Contact", href: "/#contact" },
               ].map((link) => (
                 <li key={link.name} style={{ marginBottom: "14px" }}>
