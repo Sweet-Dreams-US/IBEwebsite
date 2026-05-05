@@ -5,6 +5,79 @@ export default function Footer() {
 
   return (
     <footer style={{ background: "linear-gradient(180deg, #1C2B36, #162129)", borderTop: "3px solid #C05621" }}>
+      {/* Knowledge Center promo strip */}
+      <div
+        style={{
+          borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+          background: "rgba(192, 86, 33, 0.04)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1400px",
+            margin: "0 auto",
+            padding: "32px 24px",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "24px",
+          }}
+        >
+          <div style={{ flex: "1 1 360px" }}>
+            <div
+              style={{
+                fontSize: "11px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "2.5px",
+                color: "#C05621",
+                marginBottom: "8px",
+              }}
+            >
+              IBE Knowledge Center
+            </div>
+            <p
+              style={{
+                fontSize: "16px",
+                color: "rgba(255, 255, 255, 0.85)",
+                lineHeight: 1.5,
+                margin: 0,
+              }}
+            >
+              Practical guides for bakery owners and GMs. New article every week.
+            </p>
+          </div>
+          <a
+            href="/blog"
+            style={{
+              display: "inline-block",
+              padding: "14px 28px",
+              background: "#C05621",
+              color: "#ffffff",
+              textDecoration: "none",
+              fontWeight: 700,
+              fontSize: "13px",
+              textTransform: "uppercase",
+              letterSpacing: "1.5px",
+              borderRadius: "4px",
+              transition: "background 0.2s ease, transform 0.2s ease",
+              whiteSpace: "nowrap",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#9c4119";
+              e.currentTarget.style.transform = "translateY(-2px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#C05621";
+              e.currentTarget.style.transform = "translateY(0)";
+            }}
+          >
+            Browse Articles →
+          </a>
+        </div>
+      </div>
+
       <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "80px 24px 40px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "60px", marginBottom: "60px" }}>
           {/* Logo & Description */}
