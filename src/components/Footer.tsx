@@ -32,11 +32,12 @@ export default function Footer() {
             <h4 style={{ fontSize: "16px", fontWeight: 600, color: "#ffffff", marginBottom: "24px", textTransform: "uppercase", letterSpacing: "1px" }}>Quick Links</h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {[
-                { name: "Home", href: "#home" },
-                { name: "About", href: "#about" },
-                { name: "Products", href: "#products" },
-                { name: "Events", href: "#events" },
-                { name: "Contact", href: "#contact" },
+                { name: "Home", href: "/#home" },
+                { name: "About", href: "/#about" },
+                { name: "Products", href: "/#products" },
+                { name: "Events", href: "/#events" },
+                { name: "Knowledge Center", href: "/blog" },
+                { name: "Contact", href: "/#contact" },
               ].map((link) => (
                 <li key={link.name} style={{ marginBottom: "14px" }}>
                   <a
@@ -59,7 +60,7 @@ export default function Footer() {
               {["Bakery Products", "Bread Racks", "Blast Freeze Racks", "Wire Carts", "Custom Solutions"].map((item) => (
                 <li key={item} style={{ marginBottom: "14px" }}>
                   <a
-                    href="#products"
+                    href="/#products"
                     style={{ color: "rgba(255, 255, 255, 0.7)", textDecoration: "none", fontSize: "15px", transition: "color 0.3s ease" }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = "#c05621")}
                     onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)")}

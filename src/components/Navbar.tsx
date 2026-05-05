@@ -6,11 +6,12 @@ import gsap from "gsap";
 import ibeLogo from "@/assets/IBENewLogo.png";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Products", href: "#products" },
-  { name: "Events", href: "#events" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/#home" },
+  { name: "About", href: "/#about" },
+  { name: "Products", href: "/#products" },
+  { name: "Events", href: "/#events" },
+  { name: "Knowledge", href: "/blog" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -80,7 +81,7 @@ export default function Navbar() {
           }}
         >
           <a
-            href="#home"
+            href="/#home"
             className="nav-logo"
             style={{
               display: "flex",
@@ -133,7 +134,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="#contact"
+                href="/#contact"
                 className="nav-item"
                 style={{
                   backgroundColor: "#C05621",
@@ -219,7 +220,7 @@ export default function Navbar() {
             ))}
             <div style={{ padding: "8px 24px 8px" }}>
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 style={{
                   display: "block",

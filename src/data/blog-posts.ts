@@ -1,0 +1,1136 @@
+export type BlogTopic =
+  | "Foundations"
+  | "Production"
+  | "Cold Chain"
+  | "Logistics"
+  | "Strategy";
+
+export type BlogRole =
+  | "Owner"
+  | "GM"
+  | "Operations"
+  | "Procurement"
+  | "New-to-industry";
+
+export type BlogDepth = "quick" | "deep";
+
+export type BlogStatus = "published" | "planned";
+
+export interface BlogPostMeta {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  publishDate: string;
+  weekNumber: number;
+  classNumber: 1 | 2 | 3 | 4 | 5;
+  className: string;
+  unitNumber: number;
+  unitTitle: string;
+  topic: BlogTopic;
+  productLinks: string[];
+  roles: BlogRole[];
+  depth: BlogDepth;
+  readingTime: number;
+  status: BlogStatus;
+  coverImage?: string;
+}
+
+export const blogClasses: Record<number, { name: string; description: string }> = {
+  1: {
+    name: "Foundations: Equipment as a Business Decision",
+    description:
+      "For owners who buy equipment but were never trained on what to actually look for.",
+  },
+  2: {
+    name: "Bakery Production Floor",
+    description: "The flagship class. Cooling, proofing, dough handling, specialty bakery.",
+  },
+  3: {
+    name: "Cold Chain & Specialty Processing",
+    description: "For bakeries that freeze, dry, or run multi-product lines.",
+  },
+  4: {
+    name: "Material Handling & Logistics",
+    description: "The often-overlooked equipment that quietly governs your labor cost.",
+  },
+  5: {
+    name: "Strategic Topics for Bakery Owners",
+    description: "Owner-level questions that don't fit anywhere else.",
+  },
+};
+
+export const blogPosts: BlogPostMeta[] = [
+  // ===== Class 1 — Foundations =====
+  // Unit 1.1 — Equipment as Investment
+  {
+    id: "01",
+    slug: "true-cost-bakery-equipment",
+    title: "The True Cost of Bakery Equipment: TCO Beyond the Sticker Price",
+    excerpt:
+      "Why the cheapest rack on the quote is rarely the cheapest rack on the floor — a total-cost-of-ownership framework you can run on a napkin before signing a PO.",
+    publishDate: "2026-05-05",
+    weekNumber: 1,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 1,
+    unitTitle: "Equipment as Investment",
+    topic: "Foundations",
+    productLinks: ["bread-racks", "dough-troughs"],
+    roles: ["Owner", "GM", "Procurement"],
+    depth: "deep",
+    readingTime: 12,
+    status: "published",
+  },
+  {
+    id: "02",
+    slug: "buy-new-vs-refurbish",
+    title: "When to Buy New, When to Refurbish: A Framework for Bakery Owners",
+    excerpt:
+      "Component-built racks change the math. Here's when refurbishing wins and when it's a false economy.",
+    publishDate: "2026-05-12",
+    weekNumber: 2,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 1,
+    unitTitle: "Equipment as Investment",
+    topic: "Foundations",
+    productLinks: ["bread-racks", "dough-troughs"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 10,
+    status: "published",
+  },
+  {
+    id: "03",
+    slug: "capacity-planning-bakery-equipment",
+    title: "Capacity Planning: Sizing Equipment to Match Your Production Goals",
+    excerpt:
+      "How to convert weekly volume targets into rack counts, trough counts, and floor space — without over-buying or starving the line.",
+    publishDate: "2026-05-19",
+    weekNumber: 3,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 1,
+    unitTitle: "Equipment as Investment",
+    topic: "Foundations",
+    productLinks: ["bread-racks", "pan-tree-racks"],
+    roles: ["Owner", "GM", "Operations"],
+    depth: "deep",
+    readingTime: 11,
+    status: "published",
+  },
+
+  // Unit 1.2 — Materials Science Without the Jargon
+  {
+    id: "04",
+    slug: "steel-vs-stainless-steel-bakery",
+    title: "Steel vs Stainless Steel: When Each Makes Sense for Your Bakery",
+    excerpt:
+      "Stainless isn't always the answer. A practical guide to picking the right base metal for the right zone of your facility.",
+    publishDate: "2026-05-26",
+    weekNumber: 4,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 2,
+    unitTitle: "Materials Science Without the Jargon",
+    topic: "Foundations",
+    productLinks: ["dough-troughs", "pie-racks"],
+    roles: ["GM", "Procurement"],
+    depth: "deep",
+    readingTime: 9,
+    status: "published",
+  },
+  {
+    id: "05",
+    slug: "galvanized-glass-bead-electro-polished-finishes",
+    title: "Galvanized, Glass-Bead, Electro-Polished: A Plain-English Guide to Finishes",
+    excerpt:
+      "Three finishes, three price points, three sanitation profiles. What each one actually means once it's on the floor.",
+    publishDate: "2026-06-02",
+    weekNumber: 5,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 2,
+    unitTitle: "Materials Science Without the Jargon",
+    topic: "Foundations",
+    productLinks: ["bread-racks", "blast-freeze-racks"],
+    roles: ["GM", "Operations", "Procurement"],
+    depth: "deep",
+    readingTime: 10,
+    status: "published",
+  },
+  {
+    id: "06",
+    slug: "hidden-cost-wrong-finish",
+    title: "The Hidden Cost of the Wrong Finish: Why Spec Matters",
+    excerpt:
+      "A galvanized rack in a wash-down zone isn't cheap — it's a five-year liability. Real-world cost cases.",
+    publishDate: "2026-06-09",
+    weekNumber: 6,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 2,
+    unitTitle: "Materials Science Without the Jargon",
+    topic: "Foundations",
+    productLinks: ["bread-racks"],
+    roles: ["Owner", "GM"],
+    depth: "quick",
+    readingTime: 6,
+    status: "published",
+  },
+
+  // Unit 1.3 — Compliance & Sanitation
+  {
+    id: "07",
+    slug: "bissc-certification-explained",
+    title: "BISSC Certification: What It Is and Why Your Equipment Should Have It",
+    excerpt:
+      "The Baking Industry Sanitation Standards Committee mark, decoded — and how to spot equipment that earns it vs equipment that fakes it.",
+    publishDate: "2026-06-16",
+    weekNumber: 7,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 3,
+    unitTitle: "Compliance & Sanitation",
+    topic: "Foundations",
+    productLinks: ["dough-troughs"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 11,
+    status: "published",
+  },
+  {
+    id: "08",
+    slug: "fda-usda-bakery-compliance-cheat-sheet",
+    title: "FDA, USDA, and the Bakery: A Compliance Cheat Sheet for GMs",
+    excerpt:
+      "Which regulator owns what, what they actually inspect for, and how equipment design either passes or flunks the audit.",
+    publishDate: "2026-06-23",
+    weekNumber: 8,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 3,
+    unitTitle: "Compliance & Sanitation",
+    topic: "Foundations",
+    productLinks: [],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 13,
+    status: "published",
+  },
+  {
+    id: "09",
+    slug: "sanitation-design-101",
+    title: "Sanitation Design 101: How Your Equipment Either Helps or Hurts",
+    excerpt:
+      "Sealed welds, crevice-free corners, smooth radii — the design choices that decide whether your wash-down team finishes on time.",
+    publishDate: "2026-06-30",
+    weekNumber: 9,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 3,
+    unitTitle: "Compliance & Sanitation",
+    topic: "Foundations",
+    productLinks: ["pie-racks", "dough-troughs"],
+    roles: ["GM", "Operations"],
+    depth: "deep",
+    readingTime: 10,
+    status: "published",
+  },
+  {
+    id: "10",
+    slug: "allergen-cross-contact-equipment",
+    title: "Allergen Cross-Contact: How Equipment Design Mitigates Risk",
+    excerpt:
+      "Component-built racks let you isolate allergen lines without buying a second facility. A design-led approach to allergen risk.",
+    publishDate: "2026-07-07",
+    weekNumber: 10,
+    classNumber: 1,
+    className: blogClasses[1].name,
+    unitNumber: 3,
+    unitTitle: "Compliance & Sanitation",
+    topic: "Foundations",
+    productLinks: ["bread-racks", "dough-troughs"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 11,
+    status: "published",
+  },
+
+  // ===== Class 2 — Bakery Production Floor =====
+  // Unit 2.1 — Cooling & Proofing
+  {
+    id: "11",
+    slug: "how-bread-racks-actually-work",
+    title: "How Bread Racks Actually Work: Airflow, Spacing, and Capacity",
+    excerpt:
+      "Why two racks with identical specs can cool product at very different speeds — and what the airflow physics tell you.",
+    publishDate: "2026-07-14",
+    weekNumber: 11,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 1,
+    unitTitle: "Cooling & Proofing",
+    topic: "Production",
+    productLinks: ["bread-racks"],
+    roles: ["Operations", "GM"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+  {
+    id: "12",
+    slug: "mobile-vs-stationary-bread-racks",
+    title: "Mobile vs Stationary Bread Racks: The ROI Math",
+    excerpt:
+      "Casters cost money. Labor costs more. The break-even point is closer than you think.",
+    publishDate: "2026-07-21",
+    weekNumber: 12,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 1,
+    unitTitle: "Cooling & Proofing",
+    topic: "Production",
+    productLinks: ["bread-racks"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 8,
+    status: "planned",
+  },
+  {
+    id: "13",
+    slug: "cooling-capacity-rack-count",
+    title: "Cooling Capacity: How Many Racks Does Your Bakery Actually Need?",
+    excerpt:
+      "A simple formula for translating production volume into rack count — including the buffer most operations forget.",
+    publishDate: "2026-07-28",
+    weekNumber: 13,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 1,
+    unitTitle: "Cooling & Proofing",
+    topic: "Production",
+    productLinks: ["bread-racks"],
+    roles: ["GM", "Operations"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+  {
+    id: "14",
+    slug: "proofing-bottleneck",
+    title: "The Proofing Bottleneck: Recognizing It and Fixing It",
+    excerpt:
+      "When the rest of your line is faster than your proofers, you're paying for capacity you can't use. How to see it and solve it.",
+    publishDate: "2026-08-04",
+    weekNumber: 14,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 1,
+    unitTitle: "Cooling & Proofing",
+    topic: "Production",
+    productLinks: ["bread-racks", "pan-tree-racks"],
+    roles: ["Operations", "GM"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+  {
+    id: "15",
+    slug: "component-built-racks-lifetime-cost",
+    title: "Why Component-Built Racks Save Money Over Their Lifetime",
+    excerpt:
+      "Welded racks are cheaper on day one. Component racks are cheaper on day 2,000. The maintenance math.",
+    publishDate: "2026-08-11",
+    weekNumber: 15,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 1,
+    unitTitle: "Cooling & Proofing",
+    topic: "Production",
+    productLinks: ["bread-racks"],
+    roles: ["Owner", "Procurement"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+
+  // Unit 2.2 — Dough Handling & Pan Flow
+  {
+    id: "16",
+    slug: "dough-trough-selection",
+    title: "Dough Trough Selection: 5 Questions to Ask Before You Buy",
+    excerpt:
+      "Volume, hydration, gate type, sanitation, mobility — the five questions that decide which trough you should actually own.",
+    publishDate: "2026-08-18",
+    weekNumber: 16,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 2,
+    unitTitle: "Dough Handling & Pan Flow",
+    topic: "Production",
+    productLinks: ["dough-troughs"],
+    roles: ["GM", "Operations", "Procurement"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+  {
+    id: "17",
+    slug: "control-flow-gates-comparison",
+    title: "Control Flow Gates: Standard, Drop Chute, Lift, or Slope?",
+    excerpt:
+      "Four gate styles, four very different production lines. Match the gate to your dough.",
+    publishDate: "2026-08-25",
+    weekNumber: 17,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 2,
+    unitTitle: "Dough Handling & Pan Flow",
+    topic: "Production",
+    productLinks: ["dough-troughs"],
+    roles: ["Operations"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+  {
+    id: "18",
+    slug: "pan-tree-racks-vertical-space",
+    title: "Pan Tree Racks: Maximizing Your Bakery's Vertical Space",
+    excerpt:
+      "Square footage is the most expensive thing in your bakery. Pan trees go vertical without going custom.",
+    publishDate: "2026-09-01",
+    weekNumber: 18,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 2,
+    unitTitle: "Dough Handling & Pan Flow",
+    topic: "Production",
+    productLinks: ["pan-tree-racks"],
+    roles: ["GM", "Operations"],
+    depth: "quick",
+    readingTime: 7,
+    status: "planned",
+  },
+  {
+    id: "19",
+    slug: "sealed-rim-sanitation",
+    title: "The Sealed-Rim Standard: Why It Matters for Sanitation",
+    excerpt:
+      "If your trough rim isn't sealed, your audit isn't going to go well. The detail that separates BISSC-grade from generic.",
+    publishDate: "2026-09-08",
+    weekNumber: 19,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 2,
+    unitTitle: "Dough Handling & Pan Flow",
+    topic: "Production",
+    productLinks: ["dough-troughs"],
+    roles: ["GM", "Operations"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+  {
+    id: "20",
+    slug: "stainless-vs-standard-steel-troughs",
+    title: "Stainless vs Standard Steel Troughs: Which Is Right for Your Process?",
+    excerpt:
+      "Standard steel handles most doughs fine. Here's exactly when you need to step up to stainless.",
+    publishDate: "2026-09-15",
+    weekNumber: 20,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 2,
+    unitTitle: "Dough Handling & Pan Flow",
+    topic: "Production",
+    productLinks: ["dough-troughs"],
+    roles: ["GM", "Procurement"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+
+  // Unit 2.3 — Specialty Bakery Production
+  {
+    id: "21",
+    slug: "bagel-production-workflow",
+    title: "The Bagel Production Workflow: Equipment from Mix to Pack",
+    excerpt:
+      "Bagels demand specialized handling at every step. A walkthrough of the equipment that makes it work.",
+    publishDate: "2026-09-22",
+    weekNumber: 21,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 3,
+    unitTitle: "Specialty Bakery Production",
+    topic: "Production",
+    productLinks: ["bagel-baskets", "bagel-scoops"],
+    roles: ["Owner", "Operations"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+  {
+    id: "22",
+    slug: "donut-nesting-baskets",
+    title: "Donut Nesting Baskets: Storage, Transport, and Finished-Product Quality",
+    excerpt:
+      "Nest right and you fit twice the donuts. Nest wrong and you lose them to crush. The case for spec'd baskets.",
+    publishDate: "2026-09-29",
+    weekNumber: 22,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 3,
+    unitTitle: "Specialty Bakery Production",
+    topic: "Production",
+    productLinks: ["donut-baskets"],
+    roles: ["Operations"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+  {
+    id: "23",
+    slug: "glazing-operations-rack-selection",
+    title: "Glazing Operations: Choosing Racks That Reduce Waste",
+    excerpt:
+      "Drip-back, coverage gaps, and re-work — the three places glazing waste lives, and the rack design that fixes them.",
+    publishDate: "2026-10-06",
+    weekNumber: 23,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 3,
+    unitTitle: "Specialty Bakery Production",
+    topic: "Production",
+    productLinks: ["glazing-racks"],
+    roles: ["Operations", "GM"],
+    depth: "deep",
+    readingTime: 8,
+    status: "planned",
+  },
+  {
+    id: "24",
+    slug: "fry-screens-stamped-vs-welded",
+    title: "Fry Screens: Stamped vs Welded Mesh and When to Use Each",
+    excerpt:
+      "Stamped screens are smoother. Welded screens last longer. Which one your fryer wants, and why.",
+    publishDate: "2026-10-13",
+    weekNumber: 24,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 3,
+    unitTitle: "Specialty Bakery Production",
+    topic: "Production",
+    productLinks: ["fry-screens"],
+    roles: ["Operations"],
+    depth: "quick",
+    readingTime: 7,
+    status: "planned",
+  },
+  {
+    id: "25",
+    slug: "pie-production-high-density-racks",
+    title: "Pie Production: High-Density Racking for High-Density Operations",
+    excerpt:
+      "Pie shops live and die on shelf utilization. The all-stainless racks built for the job.",
+    publishDate: "2026-10-20",
+    weekNumber: 25,
+    classNumber: 2,
+    className: blogClasses[2].name,
+    unitNumber: 3,
+    unitTitle: "Specialty Bakery Production",
+    topic: "Production",
+    productLinks: ["pie-racks"],
+    roles: ["Owner", "Operations"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+
+  // ===== Class 3 — Cold Chain & Specialty Processing =====
+  // Unit 3.1 — Blast Freezing
+  {
+    id: "26",
+    slug: "blast-freezing-101",
+    title: "Blast Freezing 101: When and Why Your Bakery Needs It",
+    excerpt:
+      "Par-baked, frozen, shipped — blast freezing is how regional bakeries become national brands. The case for adding it.",
+    publishDate: "2026-10-27",
+    weekNumber: 26,
+    classNumber: 3,
+    className: blogClasses[3].name,
+    unitNumber: 1,
+    unitTitle: "Blast Freezing",
+    topic: "Cold Chain",
+    productLinks: ["blast-freeze-racks"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 11,
+    status: "planned",
+  },
+  {
+    id: "27",
+    slug: "choosing-blast-freeze-racks",
+    title: "Choosing Blast Freeze Racks: Materials, Sizes, and Airflow",
+    excerpt:
+      "The same airflow physics that govern cooling racks govern blast freezers — but the stakes are higher and the spec is tighter.",
+    publishDate: "2026-11-03",
+    weekNumber: 27,
+    classNumber: 3,
+    className: blogClasses[3].name,
+    unitNumber: 1,
+    unitTitle: "Blast Freezing",
+    topic: "Cold Chain",
+    productLinks: ["blast-freeze-racks"],
+    roles: ["GM", "Operations", "Procurement"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+  {
+    id: "28",
+    slug: "par-baked-frozen-national-distribution",
+    title: "Par-Baked & Frozen: Building a Bakery That Ships Nationwide",
+    excerpt:
+      "What changes about your equipment, your sanitation, and your packaging when you go from local to national.",
+    publishDate: "2026-11-10",
+    weekNumber: 28,
+    classNumber: 3,
+    className: blogClasses[3].name,
+    unitNumber: 1,
+    unitTitle: "Blast Freezing",
+    topic: "Cold Chain",
+    productLinks: ["blast-freeze-racks", "bread-transport-display"],
+    roles: ["Owner"],
+    depth: "deep",
+    readingTime: 12,
+    status: "planned",
+  },
+
+  // Unit 3.2 — Drying & Multi-Use Systems
+  {
+    id: "29",
+    slug: "drying-racks-bakery-use-cases",
+    title: "Drying Racks for Bakeries: When Are They Worth It?",
+    excerpt:
+      "Most bakeries don't need drying racks. The bakeries that do tend to need a lot of them. How to tell which group you're in.",
+    publishDate: "2026-11-17",
+    weekNumber: 29,
+    classNumber: 3,
+    className: blogClasses[3].name,
+    unitNumber: 2,
+    unitTitle: "Drying & Multi-Use Systems",
+    topic: "Cold Chain",
+    productLinks: ["blast-freeze-racks"],
+    roles: ["Owner", "Operations"],
+    depth: "quick",
+    readingTime: 7,
+    status: "planned",
+  },
+  {
+    id: "30",
+    slug: "multi-purpose-racks-cooling-freezing-drying",
+    title: "Multi-Purpose Racks: Cooling, Freezing, Drying in One System",
+    excerpt:
+      "One rack, three jobs. The flexible-fleet approach that cuts capex and lets you reconfigure as the line changes.",
+    publishDate: "2026-11-24",
+    weekNumber: 30,
+    classNumber: 3,
+    className: blogClasses[3].name,
+    unitNumber: 2,
+    unitTitle: "Drying & Multi-Use Systems",
+    topic: "Cold Chain",
+    productLinks: ["bread-racks", "blast-freeze-racks"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+  {
+    id: "31",
+    slug: "cold-storage-layout-throughput",
+    title: "Cold Storage Layout: Designing for Throughput, Not Just Volume",
+    excerpt:
+      "A walk-in is a tool, not a closet. How rack layout determines whether your cold storage helps or hurts your line.",
+    publishDate: "2026-12-01",
+    weekNumber: 31,
+    classNumber: 3,
+    className: blogClasses[3].name,
+    unitNumber: 2,
+    unitTitle: "Drying & Multi-Use Systems",
+    topic: "Cold Chain",
+    productLinks: ["blast-freeze-racks"],
+    roles: ["GM", "Operations"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+  {
+    id: "32",
+    slug: "cross-industry-lessons-meat-seafood",
+    title: "Cross-Industry Lessons: What Bakers Can Learn from Meat & Seafood",
+    excerpt:
+      "Sanitation standards, sealed welds, and component design — the bakery industry borrows more from meat than it admits.",
+    publishDate: "2026-12-08",
+    weekNumber: 32,
+    classNumber: 3,
+    className: blogClasses[3].name,
+    unitNumber: 2,
+    unitTitle: "Drying & Multi-Use Systems",
+    topic: "Cold Chain",
+    productLinks: [],
+    roles: ["Owner", "GM"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+
+  // ===== Class 4 — Material Handling & Logistics =====
+  // Unit 4.1 — Carts & Mobility
+  {
+    id: "33",
+    slug: "cart-selection-mail-receiving-carryout",
+    title: "Cart Selection: Mail, Receiving, Carryout — What Goes Where",
+    excerpt:
+      "Three carts, three jobs, three failure modes if you mix them up. A practical sorting guide.",
+    publishDate: "2026-12-15",
+    weekNumber: 33,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 1,
+    unitTitle: "Carts & Mobility",
+    topic: "Logistics",
+    productLinks: ["mail-carts-ls3", "mail-carts-ls4", "grocery-carryout", "receiving-carts"],
+    roles: ["GM", "Operations"],
+    depth: "quick",
+    readingTime: 7,
+    status: "planned",
+  },
+  {
+    id: "34",
+    slug: "wheel-math-casters-bearings",
+    title: "Wheel Math: Casters, Bearings, and Why Cheap Wheels Cost More",
+    excerpt:
+      "Wheels are 5% of the cart and 80% of the breakdowns. The bearing-and-bushing math your supplier hopes you don't run.",
+    publishDate: "2026-12-22",
+    weekNumber: 34,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 1,
+    unitTitle: "Carts & Mobility",
+    topic: "Logistics",
+    productLinks: ["bread-racks", "mail-carts-ls3"],
+    roles: ["Procurement", "Operations"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+  {
+    id: "35",
+    slug: "nestable-carts-receiving-area",
+    title: "Nestable Carts: Saving Space in Your Receiving Area",
+    excerpt:
+      "Fifteen-inch nesting distance turns a 20-cart fleet into 5 cart footprints. The simple geometry that frees a dock.",
+    publishDate: "2026-12-29",
+    weekNumber: 35,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 1,
+    unitTitle: "Carts & Mobility",
+    topic: "Logistics",
+    productLinks: ["grocery-carryout", "receiving-carts"],
+    roles: ["GM", "Operations"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+  {
+    id: "36",
+    slug: "carryout-cart-storefront-question",
+    title: "The Carryout Cart Question: Should Your Storefront Have Them?",
+    excerpt:
+      "Carryout carts raise basket size and lower customer churn. They also cost real money. The case-by-case answer.",
+    publishDate: "2027-01-05",
+    weekNumber: 36,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 1,
+    unitTitle: "Carts & Mobility",
+    topic: "Logistics",
+    productLinks: ["grocery-carryout"],
+    roles: ["Owner", "GM"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+  {
+    id: "37",
+    slug: "transport-display-racks-production-to-retail",
+    title: "Transport & Display Racks: Where Production Meets Retail",
+    excerpt:
+      "Dual-purpose racks save labor at the seam between back-of-house and front-of-house. A look at the design.",
+    publishDate: "2027-01-12",
+    weekNumber: 37,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 1,
+    unitTitle: "Carts & Mobility",
+    topic: "Logistics",
+    productLinks: ["bread-transport-display"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 8,
+    status: "planned",
+  },
+
+  // Unit 4.2 — Receiving, Shipping & Lifespan
+  {
+    id: "38",
+    slug: "receiving-workflow-equipment-impact",
+    title: "Receiving Workflow: How Equipment Choices Affect Your Dock",
+    excerpt:
+      "Your receiving dock is the first place labor goes wrong. The equipment that gets it right.",
+    publishDate: "2027-01-19",
+    weekNumber: 38,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 2,
+    unitTitle: "Receiving, Shipping & Lifespan",
+    topic: "Logistics",
+    productLinks: ["receiving-carts"],
+    roles: ["GM", "Operations"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+  {
+    id: "39",
+    slug: "bread-transport-racks-oven-to-truck",
+    title: "Bread Transport Racks: From Oven to Delivery Truck",
+    excerpt:
+      "The handoff from production to logistics is where bread gets damaged. Transport racks built for the trip.",
+    publishDate: "2027-01-26",
+    weekNumber: 39,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 2,
+    unitTitle: "Receiving, Shipping & Lifespan",
+    topic: "Logistics",
+    productLinks: ["bread-transport-display"],
+    roles: ["Operations"],
+    depth: "quick",
+    readingTime: 7,
+    status: "planned",
+  },
+  {
+    id: "40",
+    slug: "ships-disassembled-feature",
+    title: "Component-Repair Equipment: Why \"Ships Disassembled\" Is a Feature",
+    excerpt:
+      "Welded carts ship faster. Component carts repair faster. The trade-off your CFO actually cares about.",
+    publishDate: "2027-02-02",
+    weekNumber: 40,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 2,
+    unitTitle: "Receiving, Shipping & Lifespan",
+    topic: "Logistics",
+    productLinks: ["mail-carts-ls3", "mail-carts-ls4", "bread-racks"],
+    roles: ["Owner", "Procurement"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+  {
+    id: "41",
+    slug: "maintenance-programs-cart-fleet",
+    title: "Maintenance Programs: Extending the Life of Your Cart Fleet",
+    excerpt:
+      "A 15-minute monthly inspection adds years to a cart's life. The checklist worth running.",
+    publishDate: "2027-02-09",
+    weekNumber: 41,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 2,
+    unitTitle: "Receiving, Shipping & Lifespan",
+    topic: "Logistics",
+    productLinks: ["mail-carts-ls3", "mail-carts-ls4", "grocery-carryout", "receiving-carts"],
+    roles: ["Operations"],
+    depth: "quick",
+    readingTime: 6,
+    status: "planned",
+  },
+  {
+    id: "42",
+    slug: "replace-vs-repair-equipment",
+    title: "The Lifespan Conversation: When to Replace vs Repair",
+    excerpt:
+      "The 50% rule, the cascading-failure rule, and the safety rule — three tests for the replace-or-repair call.",
+    publishDate: "2027-02-16",
+    weekNumber: 42,
+    classNumber: 4,
+    className: blogClasses[4].name,
+    unitNumber: 2,
+    unitTitle: "Receiving, Shipping & Lifespan",
+    topic: "Logistics",
+    productLinks: [],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 8,
+    status: "planned",
+  },
+
+  // ===== Class 5 — Strategic Topics for Bakery Owners =====
+  // Unit 5.1 — Buying Decisions
+  {
+    id: "43",
+    slug: "off-the-shelf-vs-custom-equipment",
+    title: "Off-the-Shelf vs Custom Equipment: A Decision Framework",
+    excerpt:
+      "Most bakeries don't need custom equipment. The ones that do can usually point to exactly why. The decision tree.",
+    publishDate: "2027-02-23",
+    weekNumber: 43,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 1,
+    unitTitle: "Buying Decisions",
+    topic: "Strategy",
+    productLinks: [],
+    roles: ["Owner", "Procurement"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+  {
+    id: "44",
+    slug: "domestic-manufacturer-cost-savings",
+    title: "Working with a Domestic Manufacturer: What It Costs and What It Saves",
+    excerpt:
+      "Tariffs, lead times, support, repair-parts availability — the unglamorous reasons domestic still wins.",
+    publishDate: "2027-03-02",
+    weekNumber: 44,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 1,
+    unitTitle: "Buying Decisions",
+    topic: "Strategy",
+    productLinks: [],
+    roles: ["Owner", "Procurement"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+  {
+    id: "45",
+    slug: "lead-times-industrial-equipment",
+    title: "Lead Times in Industrial Equipment: Reading Between the Lines",
+    excerpt:
+      "Quoted lead times are a target. Real lead times are a story. How to read the difference before you sign.",
+    publishDate: "2027-03-09",
+    weekNumber: 45,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 1,
+    unitTitle: "Buying Decisions",
+    topic: "Strategy",
+    productLinks: [],
+    roles: ["Procurement"],
+    depth: "quick",
+    readingTime: 7,
+    status: "planned",
+  },
+  {
+    id: "46",
+    slug: "capital-budgeting-bakery-equipment",
+    title: "Capital Budgeting for Bakery Equipment: A 3-Year Outlook",
+    excerpt:
+      "A simple framework for spreading equipment investment across a rolling three-year window — without surprises in year two.",
+    publishDate: "2027-03-16",
+    weekNumber: 46,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 1,
+    unitTitle: "Buying Decisions",
+    topic: "Strategy",
+    productLinks: [],
+    roles: ["Owner"],
+    depth: "deep",
+    readingTime: 11,
+    status: "planned",
+  },
+
+  // Unit 5.2 — Operations & Growth
+  {
+    id: "47",
+    slug: "scaling-artisan-to-industrial",
+    title: "Scaling from Artisan to Industrial: The Equipment Transitions",
+    excerpt:
+      "The four equipment transitions every artisan bakery faces on the way to industrial — and the order to make them in.",
+    publishDate: "2027-03-23",
+    weekNumber: 47,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 2,
+    unitTitle: "Operations & Growth",
+    topic: "Strategy",
+    productLinks: ["bread-racks", "dough-troughs"],
+    roles: ["Owner"],
+    depth: "deep",
+    readingTime: 11,
+    status: "planned",
+  },
+  {
+    id: "48",
+    slug: "reducing-labor-through-equipment",
+    title: "Reducing Labor Through Equipment: 5 Common Wins",
+    excerpt:
+      "Labor is the biggest line on most bakery P&Ls. The five equipment wins that move it.",
+    publishDate: "2027-03-30",
+    weekNumber: 48,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 2,
+    unitTitle: "Operations & Growth",
+    topic: "Strategy",
+    productLinks: ["bread-racks", "mail-carts-ls3", "grocery-carryout"],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+  {
+    id: "49",
+    slug: "energy-footprint-equipment-utilities",
+    title: "Energy & Footprint: How Equipment Choice Affects Your Utilities",
+    excerpt:
+      "Cold-side equipment is where utility bills get made. The choices that move the meter.",
+    publishDate: "2027-04-06",
+    weekNumber: 49,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 2,
+    unitTitle: "Operations & Growth",
+    topic: "Strategy",
+    productLinks: ["bread-racks", "blast-freeze-racks"],
+    roles: ["Owner", "GM"],
+    depth: "quick",
+    readingTime: 7,
+    status: "planned",
+  },
+  {
+    id: "50",
+    slug: "sourcing-2026-tariffs-steel-prices",
+    title: "Sourcing in 2026: Tariffs, Steel Prices, and What to Watch",
+    excerpt:
+      "A snapshot of the inputs every bakery procurement team should be tracking heading into the next budget cycle.",
+    publishDate: "2027-04-13",
+    weekNumber: 50,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 2,
+    unitTitle: "Operations & Growth",
+    topic: "Strategy",
+    productLinks: [],
+    roles: ["Owner", "Procurement"],
+    depth: "deep",
+    readingTime: 9,
+    status: "planned",
+  },
+
+  // Unit 5.3 — Industry Outlook
+  {
+    id: "51",
+    slug: "state-of-bakery-industry",
+    title: "State of the Bakery Industry: Trends Every GM Should Know",
+    excerpt:
+      "Volume, channels, labor, automation — the four trends that will shape bakery operations over the next 24 months.",
+    publishDate: "2027-04-20",
+    weekNumber: 51,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 3,
+    unitTitle: "Industry Outlook",
+    topic: "Strategy",
+    productLinks: [],
+    roles: ["Owner", "GM"],
+    depth: "deep",
+    readingTime: 12,
+    status: "planned",
+  },
+  {
+    id: "52",
+    slug: "five-year-equipment-plan-template",
+    title: "The 5-Year Equipment Plan: A Template for Bakery Owners",
+    excerpt:
+      "A reusable template for mapping out equipment investments across a five-year window. Everything in one document.",
+    publishDate: "2027-04-27",
+    weekNumber: 52,
+    classNumber: 5,
+    className: blogClasses[5].name,
+    unitNumber: 3,
+    unitTitle: "Industry Outlook",
+    topic: "Strategy",
+    productLinks: [],
+    roles: ["Owner"],
+    depth: "deep",
+    readingTime: 10,
+    status: "planned",
+  },
+];
+
+/**
+ * A post is "released" when its status is "published" AND its publish date
+ * has arrived. This gates visibility on the index and access on the post page.
+ * Posts that are written but scheduled for future release stay invisible
+ * until their date passes — without requiring a redeploy (handled by ISR).
+ */
+export function isReleased(post: BlogPostMeta, now: Date = new Date()): boolean {
+  if (post.status !== "published") return false;
+  return new Date(post.publishDate) <= now;
+}
+
+export function getPublishedPosts(): BlogPostMeta[] {
+  return blogPosts.filter((p) => p.status === "published");
+}
+
+export function getReleasedPosts(now: Date = new Date()): BlogPostMeta[] {
+  return blogPosts.filter((p) => isReleased(p, now));
+}
+
+export function getPostBySlug(slug: string): BlogPostMeta | undefined {
+  return blogPosts.find((p) => p.slug === slug);
+}
+
+export function getAllSlugs(): string[] {
+  return blogPosts.filter((p) => p.status === "published").map((p) => p.slug);
+}
+
+export function getRelatedPosts(post: BlogPostMeta, limit = 3): BlogPostMeta[] {
+  return blogPosts
+    .filter(
+      (p) =>
+        p.slug !== post.slug &&
+        isReleased(p) &&
+        (p.classNumber === post.classNumber || p.topic === post.topic),
+    )
+    .slice(0, limit);
+}
+
+export const blogTopics: BlogTopic[] = [
+  "Foundations",
+  "Production",
+  "Cold Chain",
+  "Logistics",
+  "Strategy",
+];
+
+export const blogRoles: BlogRole[] = [
+  "Owner",
+  "GM",
+  "Operations",
+  "Procurement",
+  "New-to-industry",
+];
