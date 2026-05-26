@@ -7,7 +7,14 @@ export default function StructuredData() {
     alternateName: "IBE",
     url: "https://www.industrialbakeryequipment.com",
     telephone: "260-710-0063",
-    email: ["sales@industrialbakeryequipment.com", "ibepurchasing@yahoo.com"],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "Sales",
+      telephone: "260-710-0063",
+      url: "https://www.industrialbakeryequipment.com/#contact",
+      availableLanguage: "English",
+      areaServed: "US",
+    },
     description:
       "Steel and stainless steel fabrication for food service equipment, bakery racks, blast freeze racks, wire carts, dough troughs, and custom wire and sheet metal products. Serving over a dozen industries since 2008.",
     foundingDate: "2008",

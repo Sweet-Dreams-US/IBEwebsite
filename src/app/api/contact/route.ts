@@ -2,6 +2,64 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { Resend } from "resend";
 
+// =============================================================================
+// In-memory rate limiter — 5 requests per IP per hour
+// =============================================================================
+// Persists across requests within a warm Fluid Compute instance. Cold starts
+// reset the map, which is acceptable for spam protection (an attacker would
+// have to wait for our function to scale down anyway). For more durable
+// rate limiting, swap this for Upstash Redis or a Supabase table.
+//
+// Layered on top of Cloudflare Turnstile: Turnstile blocks bots, this caps
+// abuse from any single IP even if a token-solver service were used.
+// =============================================================================
+
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_MAP_CAP = 10000;
+
+// Maps client IP -> array of submission timestamps within the window.
+const requestLog = new Map<string, number[]>();
+
+function getClientIp(request: NextRequest): string {
+  return (
+    request.headers.get("cf-connecting-ip") ||
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    "unknown"
+  );
+}
+
+function checkRateLimit(ip: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const history = (requestLog.get(ip) ?? []).filter(
+    (t) => now - t < RATE_LIMIT_WINDOW_MS,
+  );
+
+  if (history.length >= RATE_LIMIT_MAX) {
+    const oldest = Math.min(...history);
+    const retryAfter = Math.ceil(
+      (oldest + RATE_LIMIT_WINDOW_MS - now) / 1000,
+    );
+    return { allowed: false, retryAfter };
+  }
+
+  history.push(now);
+  requestLog.set(ip, history);
+
+  // Opportunistic cleanup: when the map grows unusually large, prune
+  // entries with no recent activity. Keeps memory bounded without a timer.
+  if (requestLog.size > RATE_LIMIT_MAP_CAP) {
+    for (const [key, times] of requestLog.entries()) {
+      if (!times.some((t) => now - t < RATE_LIMIT_WINDOW_MS)) {
+        requestLog.delete(key);
+      }
+    }
+  }
+
+  return { allowed: true };
+}
+
 function buildEmailHtml(data: {
   name: string;
   email: string;
@@ -116,6 +174,23 @@ function buildEmailHtml(data: {
 }
 
 export async function POST(request: NextRequest) {
+  // Rate limit FIRST — cheap rejection before we touch Cloudflare or any
+  // downstream service. Defense in depth: even if Turnstile is bypassed,
+  // an attacker gets at most 5 hits per hour per IP.
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(ip);
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      {
+        status: 429,
+        headers: rate.retryAfter
+          ? { "Retry-After": String(rate.retryAfter) }
+          : {},
+      },
+    );
+  }
+
   const body = await request.json();
   const { turnstileToken, ...formData } = body;
 

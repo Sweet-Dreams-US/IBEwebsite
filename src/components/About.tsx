@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import EmailLink from "@/components/EmailLink";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,12 +61,16 @@ export default function About() {
             Fort Wayne, IN &mdash; In business since 2008
           </p>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", marginBottom: "48px" }}>
-            <a href="mailto:sales@industrialbakeryequipment.com" style={{ fontSize: "16px", color: "#5F8A9E", textDecoration: "none", fontWeight: 500 }}>
-              sales@industrialbakeryequipment.com
-            </a>
-            <a href="mailto:ibepurchasing@yahoo.com" style={{ fontSize: "16px", color: "#5F8A9E", textDecoration: "none", fontWeight: 500 }}>
-              ibepurchasing@yahoo.com
-            </a>
+            <EmailLink
+              user="sales"
+              domain="industrialbakeryequipment.com"
+              style={{ fontSize: "16px", color: "#5F8A9E", textDecoration: "none", fontWeight: 500 }}
+            />
+            <EmailLink
+              user="ibepurchasing"
+              domain="yahoo.com"
+              style={{ fontSize: "16px", color: "#5F8A9E", textDecoration: "none", fontWeight: 500 }}
+            />
           </div>
 
           <div className="industries-container" style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center" }}>
