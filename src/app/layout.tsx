@@ -5,6 +5,7 @@ import "./globals.css";
 import { DataProvider } from "@/context/DataContext";
 import { QuoteProvider } from "@/context/QuoteContext";
 import StructuredData from "@/components/StructuredData";
+import { Analytics } from "@vercel/analytics/next";
 
 const barlow = Barlow({
   variable: "--font-barlow",
@@ -79,6 +80,7 @@ export default function RootLayout({
         <DataProvider>
           <QuoteProvider>{children}</QuoteProvider>
         </DataProvider>
+        <Analytics />
       </body>
     </html>
   );
