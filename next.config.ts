@@ -3,6 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
+      // Shared FreeWebsites project (current) and the original IBEWebsite
+      // project, kept until it's deleted so any cached image URLs still load.
+      {
+        protocol: "https",
+        hostname: "nxhwqtqroyerbbklywyn.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
       {
         protocol: "https",
         hostname: "vaimupbyosltsvhyptah.supabase.co",

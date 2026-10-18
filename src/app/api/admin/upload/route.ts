@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/auth";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { MEDIA_BUCKET, supabaseAdmin } from "@/lib/supabase/server";
 
 export async function POST(request: NextRequest) {
   if (!(await verifyAdmin())) {
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
   const buffer = new Uint8Array(arrayBuffer);
 
   const { error } = await supabaseAdmin.storage
-    .from("Media")
+    .from(MEDIA_BUCKET)
     .upload(filePath, buffer, {
       contentType: file.type,
       upsert: false,
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
   }
 
   const { data: urlData } = supabaseAdmin.storage
-    .from("Media")
+    .from(MEDIA_BUCKET)
     .getPublicUrl(filePath);
 
   return NextResponse.json({ url: urlData.publicUrl });
