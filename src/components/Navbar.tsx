@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import ibeLogo from "@/assets/IBENewLogo.png";
+import { useBlogLink } from "@/lib/useBlogLink";
 
-const navLinks = [
+const baseLinks = [
   { name: "Home", href: "/#home" },
   { name: "About", href: "/#about" },
   { name: "Products", href: "/#products" },
@@ -13,7 +14,14 @@ const navLinks = [
   { name: "Contact", href: "/#contact" },
 ];
 
-export default function Navbar() {
+// The Blog link shows only once at least one post has released.
+const blogLink = { name: "Blog", href: "/blog" };
+
+export default function Navbar({ showBlog }: { showBlog?: boolean } = {}) {
+  const hasBlog = useBlogLink(showBlog);
+  const navLinks = hasBlog
+    ? [...baseLinks.slice(0, -1), blogLink, ...baseLinks.slice(-1)]
+    : baseLinks;
   const navRef = useRef<HTMLElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -97,7 +105,7 @@ export default function Navbar() {
               style={{ objectFit: "contain" }}
               priority
             />
-            <span className="chrome-italic" style={{ fontSize: "18px", letterSpacing: "1.5px", whiteSpace: "nowrap" }}>
+            <span className="chrome-italic nav-brand-text" style={{ fontSize: "18px", letterSpacing: "1.5px", whiteSpace: "nowrap" }}>
               Industrial Bakery Equipment
             </span>
           </a>
@@ -172,6 +180,8 @@ export default function Navbar() {
               style={{
                 background: "none",
                 border: "none",
+                position: "relative",
+                zIndex: 1,
                 color: isScrolled ? "#1C2B36" : "#ffffff",
                 padding: "8px",
                 cursor: "pointer",

@@ -1,9 +1,14 @@
 import type { MetadataRoute } from "next";
-import { blogPosts, isReleased } from "@/data/blog-posts";
+import { getReleasedPosts } from "@/lib/blog";
 
 const BASE = "https://www.industrialbakeryequipment.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Rebuilt at least hourly so a released post joins the sitemap on its date without a deploy.
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getReleasedPosts();
+
   const staticEntries: MetadataRoute.Sitemap = [
     {
       url: BASE,
@@ -35,22 +40,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${BASE}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
   ];
 
-  const blogEntries: MetadataRoute.Sitemap = blogPosts
-    .filter((p) => isReleased(p))
-    .map((p) => ({
-      url: `${BASE}/blog/${p.slug}`,
-      lastModified: new Date(p.publishDate),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
+  const blogEntries: MetadataRoute.Sitemap =
+    posts.length === 0
+      ? []
+      : [
+          {
+            url: `${BASE}/blog`,
+            lastModified: new Date(`${posts[0].releaseOn}T12:00:00Z`),
+            changeFrequency: "monthly",
+            priority: 0.8,
+          },
+          ...posts.map((p) => ({
+            url: `${BASE}/blog/${p.slug}`,
+            lastModified: new Date(`${p.releaseOn}T12:00:00Z`),
+            changeFrequency: "monthly" as const,
+            priority: 0.7,
+          })),
+        ];
 
   return [...staticEntries, ...blogEntries];
 }

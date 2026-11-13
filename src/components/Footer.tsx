@@ -1,13 +1,17 @@
 "use client";
 
 import EmailLink from "@/components/EmailLink";
+import { useBlogLink } from "@/lib/useBlogLink";
 
-export default function Footer() {
+export default function Footer({ showBlog }: { showBlog?: boolean } = {}) {
   const currentYear = new Date().getFullYear();
+  // The blog promo and the Blog link show only once at least one post has released.
+  const hasBlog = useBlogLink(showBlog);
 
   return (
     <footer style={{ background: "linear-gradient(180deg, #1C2B36, #162129)", borderTop: "3px solid #C05621" }}>
       {/* Blog promo strip */}
+      {hasBlog && (
       <div
         style={{
           borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
@@ -47,7 +51,7 @@ export default function Footer() {
                 margin: 0,
               }}
             >
-              Practical guides for bakery owners and GMs. New article every week.
+              Practical guides for bakery owners and GMs, from Industrial Bakery Equipment.
             </p>
           </div>
           <a
@@ -79,6 +83,7 @@ export default function Footer() {
           </a>
         </div>
       </div>
+      )}
 
       <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "80px 24px 40px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "60px", marginBottom: "60px" }}>
@@ -117,7 +122,7 @@ export default function Footer() {
                 { name: "About", href: "/#about" },
                 { name: "Products", href: "/#products" },
                 { name: "Events", href: "/#events" },
-                { name: "Blog", href: "/blog" },
+                ...(hasBlog ? [{ name: "Blog", href: "/blog" }] : []),
                 { name: "Contact", href: "/#contact" },
               ].map((link) => (
                 <li key={link.name} style={{ marginBottom: "14px" }}>
